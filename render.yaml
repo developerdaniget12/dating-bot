@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: au-dating-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python src/main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_USER_IDS
+        sync: false
+      - key: CHANNEL_USERNAME
+        sync: false
+      - key: LOG_LEVEL
+        value: INFO
+      - key: RATE_LIMIT
+        value: "10"
+      - key: RATE_WINDOW
+        value: "60"
+    disk:
+      name: data
+      mountPath: /opt/render/project/data
+      sizeGB: 1
